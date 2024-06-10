@@ -9,16 +9,22 @@ const Stack = createNativeStackNavigator();
 
 export default function App() {
   useEffect(() => {
-    setTimeout(() => {
+    const splashTimer = setTimeout(() => {
       SplashScreen.hide();
     }, 1000);
+
+    return () => clearTimeout(splashTimer);
   });
 
   return (
     <SafeAreaProvider>
       <NavigationContainer>
-        <Stack.Navigator>
-          <Stack.Screen name="home" component={HomeScreen} options={{ headerShown: false }} />
+        <Stack.Navigator
+          screenOptions={{
+            headerShown: false,
+          }}
+        >
+          <Stack.Screen name="home" component={HomeScreen} />
         </Stack.Navigator>
       </NavigationContainer>
     </SafeAreaProvider>

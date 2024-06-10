@@ -1,8 +1,8 @@
-import { useRef } from 'react';
+import React, { useRef } from 'react';
 import WebView, { WebViewMessageEvent } from 'react-native-webview';
-import * as React from 'react';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { getPermissions } from '@/utils/getPermissions';
+import { BASE_URL } from '@/constants';
 
 export default function HomeScreen() {
   const webviewRef = useRef<WebView>(null);
@@ -20,15 +20,12 @@ export default function HomeScreen() {
   };
 
   return (
-    <SafeAreaView
-      style={{
-        flex: 1,
-        backgroundColor: '#fff',
-      }}
-    >
+    <SafeAreaView style={{ flex: 1, backgroundColor: 'white' }}>
       <WebView
-        source={{ uri: 'http://localhost:3000' }}
-        style={{ flex: 1 }}
+        style={{
+          flex: 1,
+        }}
+        source={{ uri: BASE_URL }}
         ref={webviewRef}
         onMessage={handleMessage}
         originWhitelist={['*']}
