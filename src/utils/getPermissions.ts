@@ -1,17 +1,19 @@
 import { Platform } from 'react-native';
 import { PERMISSIONS, RESULTS, check, request } from 'react-native-permissions';
 
-type PossiblePermission = 'camera' | 'photoLibrary';
+type PossiblePermission = 'camera' | 'photoLibrary' | 'location';
 type PermissionStatus = 'unavailable' | 'denied' | 'limited' | 'granted' | 'blocked';
 
 const androidPermission = {
   camera: PERMISSIONS.ANDROID.CAMERA,
   photoLibrary: PERMISSIONS.ANDROID.READ_EXTERNAL_STORAGE,
+  location: PERMISSIONS.ANDROID.ACCESS_FINE_LOCATION,
 };
 
 const iosPermission = {
   camera: PERMISSIONS.IOS.CAMERA,
   photoLibrary: PERMISSIONS.IOS.PHOTO_LIBRARY,
+  location: PERMISSIONS.IOS.LOCATION_WHEN_IN_USE,
 };
 
 const permissionsPerOS = Platform.OS === 'ios' ? iosPermission : androidPermission;

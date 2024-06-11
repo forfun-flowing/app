@@ -1,8 +1,9 @@
-import React, { useRef } from 'react';
+import React, { useEffect, useRef } from 'react';
 import WebView, { WebViewMessageEvent } from 'react-native-webview';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { getPermissions } from '@/utils/getPermissions';
 import { BASE_URL } from '@/constants';
+import { useDidMount } from '@/hooks/useDidMount';
 
 export default function HomeScreen() {
   const webviewRef = useRef<WebView>(null);
@@ -14,6 +15,7 @@ export default function HomeScreen() {
       case 'PERMISSION': {
         await getPermissions('camera');
         await getPermissions('photoLibrary');
+        await getPermissions('location');
         break;
       }
     }
@@ -31,6 +33,7 @@ export default function HomeScreen() {
         originWhitelist={['*']}
         allowsBackForwardNavigationGestures
         javaScriptEnabled
+        geolocationEnabled
       />
     </SafeAreaView>
   );
